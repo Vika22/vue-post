@@ -5,8 +5,8 @@
             <b-col>
                <b-list-group
                   class="mb-3"
-                  v-for="(post, i) in deletedPosts"
-                  :class="{ deleted: !post.added }"
+                  v-for="(post, i) in History"
+                  :class="{ added: post.added, deleted: !post.added }"
                   :key="i"
                >
                   <b-list-group-item>
@@ -29,9 +29,18 @@ import { PostsModule } from '@/store/modules/Posts';
 @Component({
    components: {},
 })
-export default class History extends Vue {
-   get deletedPosts() {
-      return PostsModule.history.filter((h: any | object) => !h.added);
+export default class AllHistory extends Vue {
+   get HistoryParam() {
+      const query =
+         this.$route.query.param === 'added'
+            ? false
+            : this.$route.query.param === 'deleted'
+            ? true
+            : '';
+      return query;
+   }
+   get History() {
+      return PostsModule.history.filter((f: object | any) => f.added !== this.HistoryParam);
    }
 }
 </script>

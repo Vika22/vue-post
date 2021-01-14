@@ -12,21 +12,9 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/history",
-    name: "History",
+    name: "AllHistory",
     component: ()=>
-    import('@/views/History.vue')
-  },
-  {
-    path: "/history-delete",
-    name: "Delete",
-    component: ()=>
-    import('@/views/Delete.vue')
-  },
-  {
-    path: "/history-add",
-    name: "Add",
-    component: ()=>
-    import('@/views/Add.vue')
+    import('@/views/AllHistory.vue')
   }
 ];
 
